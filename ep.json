@@ -1,0 +1,10 @@
+{
+  "parts": [
+             {
+               "name": "ep_insertTimestamp",
+               "client_hooks": {
+                                 "aceEditEvent" : "ep_insertTimestamp/static/js/index:aceEditEvent"
+                               }
+             }
+           ]
+}

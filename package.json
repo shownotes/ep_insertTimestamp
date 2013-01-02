@@ -1,0 +1,9 @@
+{
+	"name": "ep_insertTimestamp",
+	"version": "0.0.1",
+	"description": "",
+	"author": "luto <m@luto.at>",
+	"contributors": [],
+	"dependencies": {},
+	"engines": { "node": ">= 0.6.0"}
+}
