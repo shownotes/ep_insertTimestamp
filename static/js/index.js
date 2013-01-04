@@ -7,7 +7,8 @@ exports.aceEditEvent = function(hook, context)
   
   // Original by simonwaldherr, http://shownotes.github.com/EtherpadBookmarklets/
   var padlines = ace.exportText().split('\n');
-  var timestamp = Math.round(new Date().getTime()/1000);
+  var timestamp = new Date().getTime() + _insertTimestampDiff;
+  timestamp = Math.round(timestamp/1000);
   
   for(var i = 0; i < padlines.length; i++)
   {

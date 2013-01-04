@@ -2,6 +2,9 @@
   "parts": [
              {
                "name": "ep_insertTimestamp",
+               "hooks": {
+                          "eejsBlock_scripts" : "ep_insertTimestamp/index:eejsBlock_scripts"
+                        },
                "client_hooks": {
                                  "aceEditEvent" : "ep_insertTimestamp/static/js/index:aceEditEvent"
                                }
