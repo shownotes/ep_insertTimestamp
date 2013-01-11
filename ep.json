@@ -4,7 +4,8 @@
                "name": "ep_insertTimestamp",
                "hooks": {
                           "eejsBlock_scripts" : "ep_insertTimestamp/index:eejsBlock_scripts",
-                          "handleMessage" : "ep_insertTimestamp/index:handleMessage"
+                          "handleMessage" : "ep_insertTimestamp/index:handleMessage",
+                          "loadSettings" : "ep_insertTimestamp/index:loadSettings"
                         },
                "client_hooks": {
                                  "aceEditEvent" : "ep_insertTimestamp/static/js/index:aceEditEvent",

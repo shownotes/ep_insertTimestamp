@@ -7,12 +7,12 @@ exports.aceEditEvent = function(hook, context)
   
   // Original by simonwaldherr, http://shownotes.github.com/EtherpadBookmarklets/
   var padlines = ace.exportText().split('\n');
-  var timestamp = new Date().getTime() + _insertTimestampDiff;
+  var timestamp = new Date().getTime() + ep_insertTimestamp.timeDiff;
   timestamp = Math.round(timestamp/1000);
   
   for(var i = 0; i < padlines.length; i++)
   {
-    if(padlines[i].indexOf('###') == 0)
+    if(padlines[i].indexOf(ep_insertTimestamp.settings.triggerSequence) == 0)
     {
       ace.replaceRange([i,0], [i,3], timestamp + ' ');
     }
@@ -22,14 +22,16 @@ exports.aceEditEvent = function(hook, context)
 // That is no real time-syncing, but it's enough for our needs
 exports.handleClientMessage_timeSync = function(hook, context)
 {
-  //var oldDiff = _insertTimestampDiff;
-  _insertTimestampDiff = context.payload.servTime - new Date().getTime();
-  //console.log(oldDiff - _insertTimestampDiff)
+  //var oldDiff = ep_insertTimestamp.timeDiff;
+  ep_insertTimestamp.timeDiff = context.payload.servTime - new Date().getTime();
+  //console.log(oldDiff - ep_insertTimestamp.timeDiff)
 }
 
 exports.documentReady = function(hook, context)
 {
-  setInterval(timeSync, 30000); // 30sec
+  var updateInterval = ep_insertTimestamp.settings.updateInterval
+  if(updateInterval != -1)
+    setInterval(timeSync, updateInterval);
 }
 
 function timeSync()

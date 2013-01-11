@@ -1,9 +1,29 @@
+var settings;
+
+exports.loadSettings = function (hook, context)
+{
+  settings = {};
+  settings.updateInterval = 30000;
+  settings.triggerSequence = '###';
+  
+  if(context.settings.ep_insertTimestamp)
+  {
+    if(context.settings.ep_insertTimestamp.updateInterval)
+      settings.updateInterval = context.settings.ep_insertTimestamp.updateInterval;
+    if(context.settings.ep_insertTimestamp.triggerSequence)
+	  settings.triggerSequence =  context.settings.ep_insertTimestamp.triggerSequence;
+  }
+}
+
 exports.eejsBlock_scripts = function (hook, context)
 {
+  
   var syncJS = '<script type="text/javascript">\n';
   syncJS += 'var servDate = ' + new Date().getTime() + '\n';
   syncJS += 'var clientDate = new Date().getTime();\n';
-  syncJS += '_insertTimestampDiff = servDate - clientDate;\n';
+  syncJS += 'ep_insertTimestamp = {}\n';
+  syncJS += 'ep_insertTimestamp.timeDiff = servDate - clientDate;\n';
+  syncJS += 'ep_insertTimestamp.settings = ' + JSON.stringify(settings) + ";\n";
   syncJS += '</script>\n';
   
   context.content = context.content + syncJS;
