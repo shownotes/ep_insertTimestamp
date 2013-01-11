@@ -14,7 +14,28 @@ exports.aceEditEvent = function(hook, context)
   {
     if(padlines[i].indexOf('###') == 0)
     {
-      ace.replaceRange([i,0], [i,3], '' + timestamp);
+      ace.replaceRange([i,0], [i,3], timestamp + ' ');
     }
+  }
+}
+
+// That is no real time-syncing, but it's enough for our needs
+exports.handleClientMessage_timeSync = function(hook, context)
+{
+  //var oldDiff = _insertTimestampDiff;
+  _insertTimestampDiff = context.payload.servTime - new Date().getTime();
+  //console.log(oldDiff - _insertTimestampDiff)
+}
+
+exports.documentReady = function(hook, context)
+{
+  setInterval(timeSync, 30000); // 30sec
+}
+
+function timeSync()
+{
+  if(pad.collabClient)
+  {
+    pad.collabClient.sendMessage({"type": "timeSync"});
   }
 }

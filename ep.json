@@ -3,10 +3,13 @@
              {
                "name": "ep_insertTimestamp",
                "hooks": {
-                          "eejsBlock_scripts" : "ep_insertTimestamp/index:eejsBlock_scripts"
+                          "eejsBlock_scripts" : "ep_insertTimestamp/index:eejsBlock_scripts",
+                          "handleMessage" : "ep_insertTimestamp/index:handleMessage"
                         },
                "client_hooks": {
-                                 "aceEditEvent" : "ep_insertTimestamp/static/js/index:aceEditEvent"
+                                 "aceEditEvent" : "ep_insertTimestamp/static/js/index:aceEditEvent",
+                                 "documentReady" : "ep_insertTimestamp/static/js/index:documentReady",
+                                 "handleClientMessage_timeSync" : "ep_insertTimestamp/static/js/index:handleClientMessage_timeSync"
                                }
              }
            ]

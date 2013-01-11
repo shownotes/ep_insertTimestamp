@@ -8,3 +8,24 @@ exports.eejsBlock_scripts = function (hook, context)
   
   context.content = context.content + syncJS;
 }
+
+exports.handleMessage = function(hook, context, callback)
+{
+  var msg = context.message;
+  var client = context.client;
+    
+  if (msg.type == 'COLLABROOM' && msg.data.type == "timeSync")
+  {
+    client.json.send({ type: "COLLABROOM",
+                       data: {
+                               type: "timeSync",
+                               payload: { servTime: new Date().getTime() }
+                             }
+                     });
+    return [null];
+  }
+  else
+  {
+    callback();
+  }
+}
