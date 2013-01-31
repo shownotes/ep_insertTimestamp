@@ -5,13 +5,16 @@ exports.loadSettings = function (hook, context)
   settings = {};
   settings.updateInterval = 30000;
   settings.triggerSequence = '###';
+  settings.replacePause = true;
   
   if(context.settings.ep_insertTimestamp)
   {
     if(context.settings.ep_insertTimestamp.updateInterval)
       settings.updateInterval = context.settings.ep_insertTimestamp.updateInterval;
     if(context.settings.ep_insertTimestamp.triggerSequence)
-	  settings.triggerSequence =  context.settings.ep_insertTimestamp.triggerSequence;
+      settings.triggerSequence =  context.settings.ep_insertTimestamp.triggerSequence;
+    if(context.settings.ep_insertTimestamp.replacePause)
+      settings.replacePause =  context.settings.ep_insertTimestamp.replacePause;
   }
 }
 

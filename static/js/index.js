@@ -1,6 +1,9 @@
+var pauseRegex = new RegExp('([0-9]{10}:)' + ep_insertTimestamp.settings.triggerSequence);
+var seqLength = ep_insertTimestamp.settings.triggerSequence.length;
+
 exports.aceEditEvent = function(hook, context)
 {
-  if(context.callstack.type == "idleWorkTimer")
+  if(!context.callstack.docTextChanged)
     return;
   
   var ace = context.editorInfo.editor;
@@ -12,9 +15,18 @@ exports.aceEditEvent = function(hook, context)
   
   for(var i = 0; i < padlines.length; i++)
   {
-    if(padlines[i].indexOf(ep_insertTimestamp.settings.triggerSequence) == 0)
+    if(padlines[i].indexOf(ep_insertTimestamp.settings.triggerSequence) == 0 &&
+       padlines[i].length == seqLength)
     {
-      ace.replaceRange([i,0], [i,3], timestamp + ' ');
+      ace.replaceRange([i,0], [i, seqLength], timestamp + ' ');
+    }
+    else if(ep_insertTimestamp.settings.replacePause)
+    {
+      var pauseResult = padlines[i].match(pauseRegex);
+      if(pauseResult)
+      {
+        ace.replaceRange([i,11], [i,11 + seqLength], timestamp + '');
+      } 
     }
   }
 }
