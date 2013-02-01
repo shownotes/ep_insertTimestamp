@@ -7,7 +7,7 @@
   "dependencies": {},
   "engines": { "node": ">= 0.6.0"},
   "repository": {
-                  "type": "git",
-                  "url": "https://github.com/mluto/ep_insertTimestamp.git"
-                }
+    "type": "git",
+    "url": "https://github.com/shownotes/ep_insertTimestamp.git"
+  }
 }

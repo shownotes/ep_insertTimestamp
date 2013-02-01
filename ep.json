@@ -1,17 +1,17 @@
 {
   "parts": [
-             {
-               "name": "ep_insertTimestamp",
-               "hooks": {
-                          "eejsBlock_scripts" : "ep_insertTimestamp/index:eejsBlock_scripts",
-                          "handleMessage" : "ep_insertTimestamp/index:handleMessage",
-                          "loadSettings" : "ep_insertTimestamp/index:loadSettings"
-                        },
-               "client_hooks": {
-                                 "aceEditEvent" : "ep_insertTimestamp/static/js/index:aceEditEvent",
-                                 "documentReady" : "ep_insertTimestamp/static/js/index:documentReady",
-                                 "handleClientMessage_timeSync" : "ep_insertTimestamp/static/js/index:handleClientMessage_timeSync"
-                               }
-             }
-           ]
+    {
+      "name": "ep_insertTimestamp",
+      "hooks": {
+        "eejsBlock_scripts": "ep_insertTimestamp/index:eejsBlock_scripts",
+        "handleMessage": "ep_insertTimestamp/index:handleMessage",
+        "loadSettings": "ep_insertTimestamp/index:loadSettings"
+      },
+      "client_hooks": {
+        "aceEditEvent": "ep_insertTimestamp/static/js/index:aceEditEvent",
+        "documentReady": "ep_insertTimestamp/static/js/index:documentReady",
+        "handleClientMessage_timeSync": "ep_insertTimestamp/static/js/index:handleClientMessage_timeSync"
+      }
+    }
+  ]
 }
