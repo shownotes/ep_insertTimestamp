@@ -18,7 +18,7 @@ exports.aceEditEvent = function(hook, context)
     if(padlines[i].indexOf(ep_insertTimestamp.settings.triggerSequence) == 0 &&
        padlines[i].length == seqLength)
     {
-      ace.replaceRange([i,0], [i, seqLength], timestamp + ' ');
+      ace.replaceRange([i,0], [i, seqLength], timestamp);
     }
     else if(ep_insertTimestamp.settings.replacePause)
     {
