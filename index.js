@@ -4,7 +4,7 @@ exports.loadSettings = function (hook, context)
 {
   settings = {};
   settings.updateInterval = 30000;
-  settings.triggerSequence = '### ';
+  settings.triggerSequence = '###';
   settings.replacePause = true;
   
   if(context.settings.ep_insertTimestamp)
