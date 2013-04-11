@@ -1,7 +1,7 @@
 # ep_insertTimestamp
 ## Function
 Inserts the current UNIX-timestamp when the user types a the string defined in `triggerSequence` at the beginning of a line.
-There is a very simple time-offset-correction implemented, which is triggered every `updateInterval` milliseconds.
+There is a very simple time-offset-correction implemented, which is triggered every `updateInterval` milliseconds.  
 If Starttime is defined like ```Starttime:YYYY-MM-DD HH:MM:SS``` (as defined in ISO8601) or ```Starttime:DD.MM.YYYY HH:MM:SS``` (as defined in DIN1355-1) the timedistance from current time to defined time will inserted, instead of current timestamp.
 
 ## Settings

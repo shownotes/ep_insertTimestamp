@@ -1,6 +1,6 @@
 {
   "name": "ep_insertTimestamp",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "convert \"### \" (or any other string) to timestamp or HH:MM:SS time",
   "author": "Shownot.es Team <team@shownot.es>",
   "contributors": [{"name": "luto", "email": "m@luto.at"},
