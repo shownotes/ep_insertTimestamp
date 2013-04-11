@@ -1,10 +1,12 @@
 {
   "name": "ep_insertTimestamp",
-  "version": "0.0.1",
-  "description": "",
-  "author": "luto <m@luto.at>",
-  "contributors": [],
+  "version": "0.0.2",
+  "description": "convert \"### \" to timestamp or HH:MM:SS time",
+  "author": "Shownot.es Team <team@shownot.es>",
+  "contributors": [{"name": "luto", "email": "m@luto.at"},
+  {"name": "Simon Waldherr", "email": "contact@simonwaldherr.eu"}],
   "dependencies": {},
+  "license": "MIT",
   "engines": { "node": ">= 0.6.0"},
   "repository": {
     "type": "git",
