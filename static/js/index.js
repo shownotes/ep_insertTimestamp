@@ -7,6 +7,8 @@ exports.aceEditEvent = function(hook, context) {
   }
   
   var ace = context.editorInfo.editor;
+  var on_switches = ["on","yes","true"];
+  var useRelativeTimestamps = false;
   
   // Original by simonwaldherr, http://shownotes.github.com/EtherpadBookmarklets/
   var padlines = ace.exportText().split('\n'),
@@ -15,8 +17,8 @@ exports.aceEditEvent = function(hook, context) {
       triggersq = ep_insertTimestamp.settings.triggerSequence,
       i = 0, starttimestamp;
       
-      regexdate[0] = /(^Starttime:(\d\d\d\d)[,\-](\d\d)[,\-](\d\d)[,\- ](\d\d)[,:](\d\d)[,:](\d\d))/i; //ISO8601
-      regexdate[1] = /(^Starttime:(\d\d)\.(\d\d)\.(\d\d\d\d) (\d\d):(\d\d):(\d\d))/i; //DIN1355-1
+      regexdate[0] = /(^Starttime:[ ]*(\d\d\d\d)[,\-](\d\d)[,\-](\d\d)[,\- ](\d\d)[,:](\d\d)[,:](\d\d))/i; //ISO8601
+      regexdate[1] = /(^Starttime:[ ]*(\d\d)\.(\d\d)\.(\d\d\d\d) (\d\d):(\d\d):(\d\d))/i; //DIN1355-1
       
   for (i = 0; i < padlines.length; i+=1) {
       if (padlines[i].indexOf('Starttime:') === 0) {
@@ -30,8 +32,18 @@ exports.aceEditEvent = function(hook, context) {
             starttimestamp = Math.round(timedate.getTime() / 1000);
           }
       }
+      
+      if (padlines[i].toLowerCase().indexOf('relativetimestamps:') === 0) {
+          for (var j=0; j<on_switches.length; j+=1) {
+            if (padlines[i].toLowerCase().indexOf(on_switches[j]) != -1) {
+              useRelativeTimestamps = true;
+            }
+          }
+      }
+      console.log(useRelativeTimestamps);
+      
       if (padlines[i].indexOf(triggersq+' ') === 0) {
-          if(typeof starttimestamp === 'number') {
+          if((typeof starttimestamp === 'number') && useRelativeTimestamps) {
               var time = parseInt(timestamp, 10) - parseInt(starttimestamp, 10),
                   hours, minutes, seconds, returntime = '';
               hours = Math.floor(time / 3600);
