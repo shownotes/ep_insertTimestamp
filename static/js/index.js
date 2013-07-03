@@ -23,9 +23,11 @@ exports.aceEditEvent = function(hook, context) {
   for (i = 0; i < padlines.length; i+=1) {
 	  starttimestring = padline.match(/^starttime: */i);
       if (starttimestring) {
-		  starttimestring = starttimestring[0]; // the part that matches aforementioned regex
-		  starttimestring = padlines[i].substring(starttimestring.length); // only the date part
-          if(regexdate[0].test(starttimestring)) {
+          starttimestring = starttimestring[0]; // the part that matches aforementioned regex
+          starttimestring = padlines[i].substring(starttimestring.length); // only the date part
+          if (NaN !== Date.parse(starttimestring)) {
+            starttimestamp = Math.round(Date.parse(starttimestring) / 1000);
+          } else if(regexdate[0].test(starttimestring)) {
             timearray = regexdate[0].exec(starttimestring);
             timedate = new Date(timearray[2], (timearray[3] - 1), timearray[4], timearray[5], timearray[6], timearray[7], 0);
             starttimestamp = Math.round(timedate.getTime() / 1000);
