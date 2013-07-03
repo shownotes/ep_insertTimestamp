@@ -17,8 +17,8 @@ exports.aceEditEvent = function(hook, context) {
       triggersq = ep_insertTimestamp.settings.triggerSequence,
       i = 0, starttimestamp, starttimestring;
       
-      regexdate[0] = /(^(\d\d\d\d)[,\-](\d\d)[,\-](\d\d)[,\- ](\d\d)[,:](\d\d)[,:](\d\d))/i; //ISO8601
-      regexdate[1] = /(^(\d\d)\.(\d\d)\.(\d\d\d\d) (\d\d):(\d\d):(\d\d))/i; //DIN1355-1
+      regexdate[0] = /((\d\d\d\d)[,\-](\d\d)[,\-](\d\d)[,\- ](\d\d)[,:](\d\d)[,:](\d\d))/i; //ISO8601
+      regexdate[1] = /((\d\d)\.(\d\d)\.(\d\d\d\d) (\d\d):(\d\d):(\d\d))/i; //DIN1355-1
       
   for (i = 0; i < padlines.length; i+=1) {
 	  starttimestring = padline.match(/^starttime: */i);
