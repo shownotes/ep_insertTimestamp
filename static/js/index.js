@@ -15,19 +15,22 @@ exports.aceEditEvent = function(hook, context) {
       timestamp = Math.round((new Date().getTime() + ep_insertTimestamp.timeDiff)/1000),
       timearray = [], regexdate = [], timedate,
       triggersq = ep_insertTimestamp.settings.triggerSequence,
-      i = 0, starttimestamp;
+      i = 0, starttimestamp, starttimestring;
       
-      regexdate[0] = /(^Starttime:[ ]*(\d\d\d\d)[,\-](\d\d)[,\-](\d\d)[,\- ](\d\d)[,:](\d\d)[,:](\d\d))/i; //ISO8601
-      regexdate[1] = /(^Starttime:[ ]*(\d\d)\.(\d\d)\.(\d\d\d\d) (\d\d):(\d\d):(\d\d))/i; //DIN1355-1
+      regexdate[0] = /(^(\d\d\d\d)[,\-](\d\d)[,\-](\d\d)[,\- ](\d\d)[,:](\d\d)[,:](\d\d))/i; //ISO8601
+      regexdate[1] = /(^(\d\d)\.(\d\d)\.(\d\d\d\d) (\d\d):(\d\d):(\d\d))/i; //DIN1355-1
       
   for (i = 0; i < padlines.length; i+=1) {
-      if (padlines[i].indexOf('Starttime:') === 0) {
-          if(regexdate[0].test(padlines[i])) {
-            timearray = regexdate[0].exec(padlines[i]);
+	  starttimestring = padline.match(/^starttime: */i);
+      if (starttimestring) {
+		  starttimestring = starttimestring[0]; // the part that matches aforementioned regex
+		  starttimestring = padlines[i].substring(starttimestring.length); // only the date part
+          if(regexdate[0].test(starttimestring)) {
+            timearray = regexdate[0].exec(starttimestring);
             timedate = new Date(timearray[2], (timearray[3] - 1), timearray[4], timearray[5], timearray[6], timearray[7], 0);
             starttimestamp = Math.round(timedate.getTime() / 1000);
-          } else if(regexdate[1].test(padlines[i])) {
-            timearray = regexdate[1].exec(padlines[i]);
+          } else if(regexdate[1].test(starttimestring)) {
+            timearray = regexdate[1].exec(starttimestring);
             timedate = new Date(timearray[4], (timearray[3] - 1), timearray[2], timearray[5], timearray[6], timearray[7], 0);
             starttimestamp = Math.round(timedate.getTime() / 1000);
           }
@@ -80,3 +83,5 @@ exports.documentReady = function() {
     setInterval(timeSync, updateInterval);
   }
 };
+
+// vim:set sw=2 et:
