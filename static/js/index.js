@@ -21,7 +21,7 @@ exports.aceEditEvent = function(hook, context) {
       regexdate[1] = /((\d\d)\.(\d\d)\.(\d\d\d\d) (\d\d):(\d\d):(\d\d))/i; //DIN1355-1
       
   for (i = 0; i < padlines.length; i+=1) {
-	  starttimestring = padline.match(/^starttime: */i);
+	  starttimestring = padlines[i].match(/^starttime: */i);
       if (starttimestring) {
           starttimestring = starttimestring[0]; // the part that matches aforementioned regex
           starttimestring = padlines[i].substring(starttimestring.length); // only the date part
