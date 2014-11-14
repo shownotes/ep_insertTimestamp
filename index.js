@@ -5,7 +5,7 @@ var settings;
 exports.loadSettings = function (hook, context) {
   "use strict";
   settings = {};
-  settings.updateInterval = 30000;
+  settings.updateInterval = 1500;
   settings.triggerSequence = '###';
   settings.replacePause = true;
   
