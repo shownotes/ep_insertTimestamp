@@ -11,7 +11,7 @@ exports.aceEditEvent = function (hook, context) {
     on_switches = ["on", "yes", "true"],
     useRelativeTimestamps = false,
     padlines = ace.exportText().split('\n'),
-    timestamp = Math.round((new Date().getTime() + ep_insertTimestamp.timeDiff) / 1000),
+    timestamp = Math.round((Date.now() + ep_insertTimestamp.timeDiff) / 1000),
     timearray = [],
     regexdate = [],
     timedate,
@@ -83,7 +83,7 @@ function timeSync() {
 // That is no real time-syncing, but it's enough for our needs
 exports.handleClientMessage_timeSync = function (hook, context) {
   "use strict";
-  ep_insertTimestamp.timeDiff = context.payload.servTime - new Date().getTime();
+  ep_insertTimestamp.timeDiff = context.payload.servTime - Date.now();
 };
 
 exports.documentReady = function () {

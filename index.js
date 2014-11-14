@@ -41,7 +41,7 @@ exports.handleMessage = function(hook, context, callback) {
     client.json.send({ type: "COLLABROOM",
                        data: {
                                type: "timeSync",
-                               payload: { servTime: new Date().getTime() }
+                               payload: { servTime: Date.now() }
                              }
                      });
     return [null];
