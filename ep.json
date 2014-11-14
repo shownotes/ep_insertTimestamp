@@ -10,6 +10,7 @@
       "client_hooks": {
         "aceEditEvent": "ep_insertTimestamp/static/js/index:aceEditEvent",
         "documentReady": "ep_insertTimestamp/static/js/index:documentReady",
+        "postAceInit": "ep_insertTimestamp/static/js/index:postAceInit",
         "handleClientMessage_timeSync": "ep_insertTimestamp/static/js/index:handleClientMessage_timeSync"
       }
     }

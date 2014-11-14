@@ -24,14 +24,11 @@ exports.loadSettings = function (hook, context) {
 
 exports.eejsBlock_scripts = function (hook, context) {
   "use strict";
-  var syncJS = '<script type="text/javascript">\n';
-  syncJS += 'var servDate = ' + new Date().getTime() + '\n';
-  syncJS += 'var clientDate = new Date().getTime();\n';
-  syncJS += 'ep_insertTimestamp = {}\n';
-  syncJS += 'ep_insertTimestamp.timeDiff = servDate - clientDate;\n';
-  syncJS += 'ep_insertTimestamp.settings = ' + JSON.stringify(settings) + ";\n";
-  syncJS += '</script>\n';
-  
+  var syncJS = '<script type="text/javascript">';
+  syncJS += 'ep_insertTimestamp={};';
+  syncJS += 'ep_insertTimestamp.settings=' + JSON.stringify(settings) + ";";
+  syncJS += '</script>';
+
   context.content = context.content + syncJS;
 };
 

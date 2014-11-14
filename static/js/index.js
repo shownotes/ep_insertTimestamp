@@ -94,4 +94,8 @@ exports.documentReady = function () {
   }
 };
 
+exports.postAceInit = function () {
+  setTimeout(timeSync, 0);
+};
+
 // vim:set sw=2 et:
