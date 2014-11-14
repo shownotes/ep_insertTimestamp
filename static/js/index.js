@@ -52,7 +52,7 @@ exports.aceEditEvent = function (hook, context) {
         }
       }
     }
-    //console.log(useRelativeTimestamps);
+
     if (padlines[i].indexOf(triggersq + ' ') === 0) {
       if ((typeof starttimestamp === 'number') && useRelativeTimestamps) {
         time = parseInt(timestamp, 10) - parseInt(starttimestamp, 10);
